@@ -169,6 +169,15 @@ class BST{
 		this.getNodesLength(this.root);
 		return this.numbers;
 	}
+	reverse(node){
+		if(node !== null){
+			var temp = this.reverse(node.left);
+			node.left = this.reverse(node.right);
+			node.right = temp;
+
+		}
+		return node;
+	}
 }
 
 var bst = new BST();
@@ -204,11 +213,16 @@ console.log(foundNode);
 console.log('Update count');
 var update = bst.update(23);
 console.log(update.count);
+
 bst.remove(45);
 bst.levelOrder(bst.root);
 
 console.log('Get numbers of node');
 console.log(bst.nodeNumbers());
+
+console.log('Reverse tree');
+bst.reverse(bst.root);
+bst.levelOrder(bst.root);
 
 
 
